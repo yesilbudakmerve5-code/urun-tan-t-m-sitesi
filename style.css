@@ -1,0 +1,187 @@
+/* [V-1] CSS DEĞİŞKENLERİ (Tam 8 Adet) */
+:root {
+    --loreal-altin: #D4AF37;       /* 1 */
+    --koyu-siyah: #000000;         /* 2 */
+    --yumusak-gri: #f9f9f9;        /* 3 */
+    --beyaz: #ffffff;              /* 4 */
+    --yazi-fontu: 'Georgia', serif; /* 5 */
+    --gecis-suresi: 0.4s;          /* 6 */
+    --keskin-hat: 0px;             /* 7 (Lüks görünüm için kavis kapalı) */
+    --golge-stili: 0 5px 15px rgba(0,0,0,0.1); /* 8 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--yazi-fontu);
+    background-color: var(--yumusak-gri);
+    color: var(--koyu-siyah);
+    line-height: 1.6;
+}
+
+/* --- [P-1] POSITION: FIXED (Sabit Navbar) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--koyu-siyah);
+    color: var(--loreal-altin);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--loreal-altin);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    /* [T-3] GEÇİŞ: Link Renk Değişimi */
+    transition: color var(--gecis-suresi);
+}
+
+.nav-links a:hover {
+    color: var(--loreal-altin);
+}
+
+/* --- HERO & [A-1] ANIMASYON (Keyframes) --- */
+@keyframes süzülme {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero {
+    margin-top: 80px;
+    padding: 100px 20px;
+    background: var(--beyaz);
+    text-align: center;
+    animation: süzülme 1.2s ease-out; /* Animasyon kullanımı */
+}
+
+.ana-baslik {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* --- DÜZEN VE [P-2] STICKY --- */
+.ana-kapsayici {
+    display: flex;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+.sticky-sidebar {
+    position: sticky;
+    top: 110px;
+    width: 280px;
+    height: fit-content;
+    background: var(--koyu-siyah);
+    color: var(--loreal-altin);
+    padding: 30px;
+    border: 1px solid var(--loreal-altin);
+}
+
+.sticky-sidebar ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sticky-sidebar li {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+.icerik { flex: 1; }
+
+/* --- [P-3] POSITION: RELATIVE (Kapsayıcı) --- */
+.urun-kart {
+    position: relative;
+    background: var(--beyaz);
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: var(--golge-stili);
+    /* [T-4] GEÇİŞ: Kartın Hover Etkisi */
+    transition: transform var(--gecis-suresi);
+}
+
+.urun-kart:hover {
+    transform: translateY(-5px);
+}
+
+/* --- [P-4] POSITION: ABSOLUTE (Rozet) --- */
+.rozet {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--loreal-altin);
+    color: black;
+    padding: 6px 15px;
+    font-weight: bold;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+}
+
+.kart-resim {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain; /* Resmi bozmadan kutuya sığdırır */
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: var(--koyu-siyah);
+    color: var(--loreal-altin);
+    border: 1px solid var(--loreal-altin);
+    padding: 12px 30px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* [T-5] GEÇİŞ: Buton Renk Değişimi */
+    transition: all var(--gecis-suresi);
+}
+
+.btn:hover {
+    background: var(--loreal-altin);
+    color: black;
+}
+
+/* Ekstra Animasyon: Kirpik Uzama Çizgisi */
+@keyframes uzat {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.uzama-cizgisi {
+    height: 2px;
+    background: var(--loreal-altin);
+    margin: 20px 0;
+    width: 0;
+    animation: uzat 3s infinite alternate;
+}
+
+.alt-bilgi {
+    text-align: center;
+    padding: 50px;
+    color: #888;
+    font-size: 0.8rem;
+}
+
+/* --- DUYARLI TASARIM (Mobile) --- */
+@media (max-width: 768px) {
+    .ana-kapsayici { flex-direction: column; }
+    .sticky-sidebar { position: static; width: 100%; }
+}
